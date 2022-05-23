@@ -34,9 +34,7 @@ export class ListarUsuariosComponent implements OnInit {
       'identificacion': new FormControl(''),
     });
 
-    this.userService.listar().subscribe(data=>{
-      this.crearTabla(data);
-    });
+    this.listarTabla();
 
     this.userService.getUserCambio().subscribe(data => {
       this.crearTabla(data);
@@ -50,6 +48,12 @@ export class ListarUsuariosComponent implements OnInit {
       });
     });
 
+  }
+
+  listarTabla(){
+    this.userService.listar().subscribe(data=>{
+      this.crearTabla(data);
+    });
   }
 
 
@@ -86,7 +90,7 @@ export class ListarUsuariosComponent implements OnInit {
     let identificacion=this.form.value['identificacion'];
     this.userService.buscarIdentifiacion(identificacion).subscribe(data=>{
       console.log(data);
-        if (data.length>0) {
+        if (data) {
           this.userService.setUsercambio(data);
           this.userService.setMensajeCambio("BUSQUEDA REALIZADA");
         } else {

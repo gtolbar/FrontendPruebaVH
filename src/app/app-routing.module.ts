@@ -4,6 +4,12 @@ import { ListarUsuariosComponent } from './core/components/listar-usuarios/lista
 
 const routes: Routes = [
   {
+    path:'',
+    pathMatch:'full',
+    redirectTo:'listar-usuarios'
+
+  },
+  {
     path:'listar-usuarios',
     component:ListarUsuariosComponent
   }

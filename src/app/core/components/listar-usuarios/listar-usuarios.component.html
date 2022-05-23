@@ -1,0 +1,56 @@
+  <mat-card class="example-card">
+
+      <form class="example-form" [formGroup]="form" (ngSubmit)="buscar()">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Buscar Identificacion</mat-label>
+          <input type="number" matInput formControlName="identificacion" placeholder="Ej. 1075xxxxxx">
+        </mat-form-field>
+        <button mat-raised-button color="primary" style="width: 100px; height: 40px; margin-left: 25px; margin-top: 7px;"
+          type="submit"
+        >Buscar</button>
+      </form>
+
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombres </th>
+          <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="telefono">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Telefonos </th>
+          <td mat-cell *matCellDef="let element"> {{element.telefono}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="identificacion">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Identificaciones </th>
+        <td mat-cell *matCellDef="let element"> {{element.identificacion}} </td>
+    </ng-container>
+
+      <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef> Acciones </th>
+          <td mat-cell *matCellDef="let element">
+              <button mat-button color="primary" (click)="actualizar(element)">
+                  <mat-icon>ballot</mat-icon>
+              </button>
+              <button mat-button color="primary" (click)="eliminar(element.id)">
+                  <mat-icon>delete</mat-icon>
+              </button>
+          </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+    <button mat-fab color="accent" style="float: right;margin-top: 10px;" (click)="registrar()">
+      <mat-icon>add</mat-icon>
+    </button>
+
+  </mat-card>

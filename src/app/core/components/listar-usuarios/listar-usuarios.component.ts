@@ -85,8 +85,8 @@ export class ListarUsuariosComponent implements OnInit {
   buscar(){
     let identificacion=this.form.value['identificacion'];
     this.userService.buscarIdentifiacion(identificacion).subscribe(data=>{
-
-        if (data) {
+      console.log(data);
+        if (data.length>0) {
           this.userService.setUsercambio(data);
           this.userService.setMensajeCambio("BUSQUEDA REALIZADA");
         } else {
